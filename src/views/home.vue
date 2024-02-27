@@ -33,7 +33,7 @@ filterForBestSellers(store.productsCatalogue);
   >
     <div
       id="hero-text-container"
-      class="flex flex-col bg-slate-950/50 h-full items-center justify-center"
+      class="flex flex-col bg-black/50 h-full items-center justify-center"
     >
       <h1 class="text-center text-4xl mb-2">Big Dummy Text</h1>
       <p class="text-center text-lg">Dummy Text</p>
