@@ -14,12 +14,15 @@ export default {
     const category = ref(route.params.category);
     const searchquery = ref(route.params.searchquery.toLowerCase());
     const products = ref(store.productsCatalogue);
+
+    /* JSON products stored in an array instead of an object */
     const productsArray = ref([]);
- 
-        const filteredArray = computed(() =>
+
+    const filteredArray = computed(() =>
       productsArray.value.filter(matchesSearchQuery)
     );
 
+    /* checks if products in productsArray have at least one value that includes the searchquery*/
     function matchesSearchQuery(product) {
         return Object.values(product).some((value) =>
         typeof value === "string" && value.toLowerCase().includes(searchquery.value)
@@ -30,9 +33,10 @@ export default {
         () => store.productsCatalogue,
         (newProductsCatalogue) => {
             products.value = newProductsCatalogue;
+            /* Converts JSON products object to an array */
             productsArray.value = Object.values(products.value);
-      console.log(productsArray.value)
-      console.log (filteredArray.value)
+
+            console.log(productsArray.value)
         });
 
     watch(() => route.params.category, (newCategory) => {
@@ -41,6 +45,7 @@ export default {
 
     watch(() => route.params.searchquery, (newSearchQuery) => {
       searchquery.value = newSearchQuery;
+      console.log(filteredArray)
     });
 
     return {
