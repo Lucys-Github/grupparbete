@@ -80,14 +80,24 @@
     <!-- socials -->
     <div
       id="copyright"
-      class="flex flex-col items-center w-full py-4 space-y-2 bg-gray-500"
+      class="flex flex-col items-center w-full py-4 lg:py-8 space-y-2 lg:space-y-4 bg-gray-500"
     >
       <p class="text-center px-12">
         The content of this site is copyright protected and is the property of
         Team 6, ITHS.
       </p>
-      <h1>COOLERclothes</h1>
+      <router-link to="/"
+        ><img
+          src="/src/assets/logo.png"
+          alt="Cooler Clothes logo"
+          class="max-h-16"
+      /></router-link>
     </div>
   </div>
   <!-- footer-background -->
 </template>
+<style scoped>
+img {
+  filter: grayscale();
+}
+</style>
