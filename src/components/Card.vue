@@ -14,24 +14,26 @@
 <template>
   <div
     id="card-background"
-    class="rounded shadow overflow-hidden bg-[#1c1c1c]"
+    class="flex flex-col rounded shadow overflow-hidden bg-[#1c1c1c]"
     v-if="show"
   >
     <RouterLink :to="`/products/${product.id}`">
       <!-- The card links to the product page, that in turn pass these props to the productInfo component on call -->
-      <img :src="cardImgSrc" class="w-full h-32 sm:h-48 object-cover" />
+      <img :src="cardImgSrc" class="w-full h-32 sm:h-48 lg:h-56 object-cover" />
     </RouterLink>
 
     <div
       id="product-info"
-      class="flex flex-row items-center px-1 py-2 space-x-1 justify-around"
+      class="flex flex-row self-stretch items-center px-2 py-3 md:py-6 space-x-2 justify-around h-full"
     >
-      <div id="title-brand shrink">
-        <h3 class="">{{ product.title }}</h3>
-        <h4 class="">{{ product.brand }}</h4>
+      <div id="title-brand" class="flex flex-col stretch flex-wrap space-y-1">
+        <h3 class="text-sm font-medium">{{ product.title }}</h3>
+        <h4 class="text-xs font-light">
+          {{ product.brand }}
+        </h4>
       </div>
       <!-- end title-brand -->
-      <h2 class="flex-none">SEK {{ product.price }}</h2>
+      <h2 class="flex-none text-md">{{ product.price }}kr</h2>
     </div>
     <!-- product-info -->
   </div>
