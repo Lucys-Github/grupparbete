@@ -36,10 +36,12 @@ filterForBestSellers(store.productsCatalogue);
     </div>
   </div>
   <div class="mt-[40px]">
-    <h2 class="px-24 ml-4 text-4xl mb-2">Best sellers</h2>
+    <h2 class="md:px-24 ml-4 text-4xl mb-2">Best sellers</h2>
   </div>
-  <div class="px-24 my-4 overflow-x-hidden">
-    <div class="grid grid-cols-5 gap-4 p-4">
+  <div class="xl:px-24 my-2 lg:my-4 overflow-x-hidden">
+    <div
+      class="grid xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-1 gap-4 p-4"
+    >
       <Card
         class="col-span-1"
         v-for="product in products"
@@ -54,7 +56,7 @@ filterForBestSellers(store.productsCatalogue);
 <style scoped>
 .bg-hero {
   background-image: url("../src/assets/hero.png");
-  background-size: 100% auto;
+
   background-repeat: no-repeat;
 }
 </style>
