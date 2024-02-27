@@ -1,5 +1,4 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
   <div
@@ -83,7 +82,7 @@
       id="copyright"
       class="flex flex-col items-center w-full py-4 space-y-2 bg-gray-500"
     >
-      <p>
+      <p class="text-center px-12">
         The content of this site is copyright protected and is the property of
         Team 6, ITHS.
       </p>
