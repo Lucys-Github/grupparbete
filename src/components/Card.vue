@@ -12,7 +12,11 @@
   </div> -->
 
 <template>
-  <div id="card-background" class="rounded shadow overflow-hidden" v-if="show">
+  <div
+    id="card-background"
+    class="rounded shadow overflow-hidden bg-[#1c1c1c]"
+    v-if="show"
+  >
     <RouterLink :to="`/products/${product.id}`">
       <!-- The card links to the product page, that in turn pass these props to the productInfo component on call -->
       <img :src="cardImgSrc" class="w-full h-32 sm:h-48 object-cover" />
@@ -22,12 +26,12 @@
       id="product-info"
       class="flex flex-row items-center px-1 py-2 space-x-1 justify-around"
     >
-      <div id="title-brand">
+      <div id="title-brand shrink">
         <h3 class="">{{ product.title }}</h3>
         <h4 class="">{{ product.brand }}</h4>
       </div>
       <!-- end title-brand -->
-      <h2 class="">SEK{{ product.price }}</h2>
+      <h2 class="flex-none">SEK {{ product.price }}</h2>
     </div>
     <!-- product-info -->
   </div>
@@ -39,15 +43,16 @@ export default {
     show() {
       if (this.categorySearch === true) {
         if (this.searchCategory !== "all") {
-            if (this.product.category === this.searchCategory ){
-              return true;
-            }
-        } 
-        else {
-        return true;}}
-      else {
-        return true;}
-    }
+          if (this.product.category === this.searchCategory) {
+            return true;
+          }
+        } else {
+          return true;
+        }
+      } else {
+        return true;
+      }
+    },
   },
   props: {
     product: {
