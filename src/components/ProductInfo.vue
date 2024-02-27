@@ -5,7 +5,7 @@
   >
     <div
       id="gallery-container"
-      class="p-4 space-y-2 col-span-5 lg:col-span-7 bg-gray-300 flex flex-col rounded lg:h-auto lg:max-h-screen justify-around items-center"
+      class="p-4 space-y-2 col-span-5 lg:col-span-7 bg-[#1c1c1c] flex flex-col lg:h-auto lg:max-h-screen justify-around items-center"
     >
       <!-- <div class="imgContainer ">
       </div> -->
@@ -34,7 +34,7 @@
 
     <div
       id="product-info-card"
-      class="h-fit col-span-5 lg:col-span-3 p-4 bg-slate-300 space-y-4 rounded"
+      class="h-fit col-span-5 lg:col-span-3 p-4 bg-[#1c1c1c] space-y-4 text-white"
     >
       <div id="titles-and-stock" class="relative">
         <h3>{{ product.title }}</h3>
