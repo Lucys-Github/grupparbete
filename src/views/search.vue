@@ -21,17 +21,9 @@ export default {
       productsArray.value.filter(matchesSearchQuery)
     );
 
-    /* checks if products in productsArray have at least one value that includes the searchquery*/
     function matchesSearchQuery(product) {
-        return Object.values(product).some((value) =>
-        typeof value === "string" &&
-        /* filtering out product description values from search by using length */
-        value.length < 40 &&
-        searchQuery.value.some((splitOfQuery) =>
-      value.toLowerCase().includes(splitOfQuery.toLowerCase())
-    )
-    )
-    };
+      return searchQuery.value.every(word => product.title.toLowerCase().includes(word));
+     }
 
     /* watch for if products are fetched from Pinia */
     watch(
