@@ -28,13 +28,19 @@ filterForBestSellers(store.productsCatalogue);
 
 <template>
   <div
-    class="hero bg-cover bg-center text-white flex flex-col justify-center items-center bg-hero h-[56vh]"
+    id="bg-hero"
+    class="hero bg-cover bg-[center_top_30%] text-white justify-center items-center h-[56vh]"
   >
-    <div>
-      <h1 class="text-4xl mb-2">Big Dummy Text</h1>
-      <p class="text-lg">Dummy Text</p>
+    <div
+      id="hero-text-container"
+      class="flex flex-col bg-slate-950/50 h-full items-center justify-center"
+    >
+      <h1 class="text-center text-4xl mb-2">Big Dummy Text</h1>
+      <p class="text-center text-lg">Dummy Text</p>
     </div>
   </div>
+  <!-- bg-hero -->
+
   <div class="mt-[40px]">
     <h2 class="md:px-24 ml-4 text-4xl mb-2">Best sellers</h2>
   </div>
@@ -54,9 +60,8 @@ filterForBestSellers(store.productsCatalogue);
 </template>
 
 <style scoped>
-.bg-hero {
-  background-image: url("../src/assets/hero.png");
-
+#bg-hero {
+  background-image: url("src/assets/hero-slides/_bb005c35-e495-4702-ac13-34e16eff49e9.jpeg");
   background-repeat: no-repeat;
 }
 </style>
