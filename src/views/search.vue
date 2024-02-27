@@ -12,12 +12,11 @@ export default {
     const store = useProductsStore();
     const route = useRoute();
     const category = ref(route.params.category);
-    const searchQuery = ref(route.params.searchquery.toLowerCase());
+    const searchQuery = ref(route.params.searchquery);
     const products = ref(store.productsCatalogue);
-
-    /* JSON products stored in an array instead of an object */
     const productsArray = ref([]);
 
+    /* new product array with only products that match searchquery*/
     const filteredArray = computed(() =>
       productsArray.value.filter(matchesSearchQuery)
     );
@@ -25,26 +24,34 @@ export default {
     /* checks if products in productsArray have at least one value that includes the searchquery*/
     function matchesSearchQuery(product) {
         return Object.values(product).some((value) =>
-        typeof value === "string" && value.toLowerCase().includes(searchQuery.value)
-      );
-    }
+        typeof value === "string" &&
+        searchQuery.value.some((splitOfQuery) =>
+      value.toLowerCase().includes(splitOfQuery.toLowerCase())
+    )
+    )
+    };
 
+    /* watch for if products are fetched from Pinia */
     watch(
         () => store.productsCatalogue,
         (newProductsCatalogue) => {
             products.value = newProductsCatalogue;
-            /* Converts JSON products object to an array */
-            productsArray.value = Object.values(products.value);
-        }, { immediate: true },{deep: false});
+            if(products.value){
+              /* Products object turned into an array*/
+              productsArray.value = Object.values(products.value);
+            }
+    }, {immediate: true});
 
+    /* watchers for route changes */
     watch(() => route.params.category, (newCategory) => {
       category.value = newCategory;
-    },{ immediate: true }, {deep: false});
+    },{ immediate: true });
 
     watch(() => route.params.searchquery, (newSearchQuery) => {
       searchQuery.value = newSearchQuery;
-      console.log(searchQuery.value)
-    },{ immediate: true }, {deep: false});
+      /* split to make an array of multiple word searchqueries */
+      searchQuery.value = searchQuery.value.toLowerCase().split(" ");
+    },{ immediate: true });
 
     return {
                 products: store.productsCatalogue,
