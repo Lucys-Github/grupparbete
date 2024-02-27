@@ -32,12 +32,22 @@ filterForBestSellers(store.productsCatalogue);
     class="hero bg-cover bg-[center_top_30%] text-white justify-center items-center h-[56vh]"
   >
     <div
-      id="hero-text-container"
-      class="flex flex-col bg-black/50 h-full items-center justify-center"
+      id="hero-text-background"
+      class="flex flex-col bg-black/55 h-full items-center justify-center text-center space-y-2 tracking-tighter"
     >
-      <h1 class="text-center text-4xl mb-2">Big Dummy Text</h1>
-      <p class="text-center text-lg">Dummy Text</p>
+      <div
+        id="huge-neons"
+        class="flex flex-col uppercase text-7xl font-extrabold drop-shadow-[0_1.4px_1.4px_rgba(0,0,0,0.9)] tracking-[-.25rem]"
+      >
+        <!-- don't know why the drop shadow isn't working -->
+        <span class="text-[#FF007A]">sale</span>
+        <span class="text-[#00E0FF]">sale</span>
+        <span class="text-[#FF007A]">sale</span>
+      </div>
+      <!-- huge neons -->
+      <span class="text-xl font-semibold uppercase">Discount up to 66%</span>
     </div>
+    <!-- hero text background -->
   </div>
   <!-- bg-hero -->
 
