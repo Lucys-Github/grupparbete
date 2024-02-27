@@ -25,6 +25,8 @@ export default {
     function matchesSearchQuery(product) {
         return Object.values(product).some((value) =>
         typeof value === "string" &&
+        /* filtering out product description values from search by using length */
+        value.length < 40 &&
         searchQuery.value.some((splitOfQuery) =>
       value.toLowerCase().includes(splitOfQuery.toLowerCase())
     )
