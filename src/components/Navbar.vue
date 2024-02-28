@@ -23,7 +23,7 @@
 </script>
 
 <template>
-    <div id="navbar" class="z-50 text-[#f5f5f5] top-0 sticky">
+    <div id="navbar" class="z-50 text-[#f5f5f5] top-0">
         <SideMenu
             :side-menu-active="sideMenuActive"
             @handle-side-menu-activation="handleSideMenuActivation"
@@ -42,7 +42,7 @@
                 <div id="input-container" class="relative max-md:hidden">
                     <input
                         type="text"
-                        class="w-64 h-8 rounded-full pl-10 text-black"
+                        class="w-64 h-10 rounded-full pl-10 text-black"
                         placeholder="Search"
                         v-model="searchInput"
                         @keyup.enter="handleSearch"
@@ -50,7 +50,7 @@
                     <img
                         src="/src/assets/icons/search-icon.svg"
                         alt=""
-                        class="absolute transition-all z-10 duration-500 pl-2 top-1 h-6"
+                        class="absolute transition-all z-10 duration-500 pl-2 top-2 h-6"
                     />
                 </div>
 
@@ -83,26 +83,26 @@
             </div>
             <div
                 id="navbar-right"
-                class="flex flex-1 justify-center gap-4 max-sm:gap-5 max-md:gap-9 max-md:justify-end max-md:mr-5"
+                class="flex flex-1 justify-center gap-4 max-sm:gap-5 max-md:gap-9 max-md:justify-end max-md:mr-5 text-sm"
             >
-                <div class="flex">
+                <div class="flex pr-1">
                     <img
                         src="/src/assets/icons/login-icon.svg"
                         alt="mask icon"
                         class="min-w-6"
                     />
-                    <h2 class="pl-1 max-md:hidden">Login</h2>
+                    <h2 class="pl-1 pt-0.5 max-md:hidden">Login</h2>
                 </div>
-                <div class="flex">
+                <div class="flex pr-1">
                     <img
                         src="/src/assets/icons/favorite-icon.svg"
                         alt="heart icon"
                         class="min-w-6"
                     />
-                    <h2 class="pl-1 max-md:hidden">Favorites</h2>
+                    <h2 class="pl-1 pt-0.5 max-md:hidden">Favorites</h2>
                 </div>
                 <div
-                    class="flex cursor-pointer"
+                    class="flex cursor-pointer pr-1"
                     @click="handleCartMenuActivation"
                 >
                     <img
@@ -110,7 +110,7 @@
                         alt="Shopping bag icon"
                         class="min-w-6"
                     />
-                    <h2 class="pl-1 max-md:hidden">Cart</h2>
+                    <h2 class="pl-1 pt-0.5 max-md:hidden">Cart</h2>
                 </div>
             </div>
         </div>
@@ -119,30 +119,40 @@
             class="h-9 max-md:hidden bg-[#0c0c0c] p-5"
         >
             <ul
-                class="flex gap-5 h-full justify-center items-center font-mono font-semibold"
+                class="flex gap-5 h-full justify-center items-center font-inter font-semibold text-xs"
             >
                 <li>
-                    <router-link to="/search/jackets" class="p-4"
+                    <router-link
+                        to="/search/jackets"
+                        class="p-4 hover:text-[#ff007a]"
                         >JACKETS</router-link
                     >
                 </li>
                 <li>
-                    <router-link to="/search/hoodies" class="p-4"
+                    <router-link
+                        to="/search/hoodies"
+                        class="p-4 hover:text-[#ff007a]"
                         >HOODIES</router-link
                     >
                 </li>
                 <li>
-                    <router-link to="/search/shirts" class="p-4"
+                    <router-link
+                        to="/search/shirts"
+                        class="p-4 hover:text-[#ff007a]"
                         >SHIRTS</router-link
                     >
                 </li>
                 <li>
-                    <router-link to="/search/pants" class="p-4"
+                    <router-link
+                        to="/search/pants"
+                        class="p-4 hover:text-[#ff007a]"
                         >PANTS</router-link
                     >
                 </li>
                 <li>
-                    <router-link to="/search/accessories" class="p-4"
+                    <router-link
+                        to="/search/accessories"
+                        class="p-4 hover:text-[#ff007a]"
                         >ACCESSORIES</router-link
                     >
                 </li>
