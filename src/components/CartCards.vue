@@ -9,7 +9,7 @@ const cart = ref({});
 
 const sortCart = () => {
   const newGroupedCart = {};
-
+  const totalAmount = 0;
   for (const product of store.cart) {
     const key = `${product.title}-${product.chosenSize}`;
 

@@ -1,4 +1,6 @@
 <script setup>
+import { ref, watch } from "vue";
+import { useCartStore } from "../store";
 import CartCards from "./CartCards.vue";
 
 const emit = defineEmits(["handle-cart-menu-activation"]);
@@ -6,9 +8,30 @@ const props = defineProps({
   cartMenuActive: { required: true, type: Boolean },
 });
 
+const store = useCartStore();
+
+const totalAmount = ref(0);
+
+const getTotalAmount = () => {
+  let newTotalAmount = 0;
+  for (const product of store.cart) {
+    newTotalAmount += product.price;
+  }
+  totalAmount.value = newTotalAmount;
+};
+
 const handleCartMenuActivation = () => {
   emit("handle-cart-menu-activation");
 };
+
+watch(
+  () => store.cart,
+  () => {
+    getTotalAmount();
+  }
+);
+
+getTotalAmount();
 </script>
 
 <template>
@@ -50,7 +73,7 @@ const handleCartMenuActivation = () => {
           </div>
           <div class="flex justify-between mt-8">
             <h3>Total Cost:</h3>
-            <h3>299:-</h3>
+            <h3>{{ totalAmount }}:-</h3>
           </div>
           <button class="p-5 bg-[#1c1c1c] rounded-lg hover:opacity-75 mt-8">
             Checkout
