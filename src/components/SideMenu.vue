@@ -21,7 +21,10 @@
         "
     >
         <div id="side-menu" class="h-full w-[70%] max-w-[400px] bg-[#1c1c1c]">
-            <div id="top" class="flex justify-end items-center border-b">
+            <div
+                id="top"
+                class="flex justify-end items-center border-b border-black"
+            >
                 <img
                     src="/src/assets/icons/close-icon.svg"
                     alt="X icon"
@@ -46,6 +49,13 @@
                 >
                     <li class="mt-2">
                         <router-link
+                            to="/search/capes"
+                            @click="emit('handle-side-menu-activation')"
+                            >Capes</router-link
+                        >
+                    </li>
+                    <li class="mt-2">
+                        <router-link
                             to="/search/jackets"
                             @click="emit('handle-side-menu-activation')"
                             >Jackets</router-link
@@ -62,7 +72,7 @@
                         <router-link
                             to="/search/shirts"
                             @click="emit('handle-side-menu-activation')"
-                            >Shirts</router-link
+                            >T-Shirts</router-link
                         >
                     </li>
                     <li class="mt-2">
