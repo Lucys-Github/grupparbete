@@ -73,16 +73,11 @@ watch(
             {{ productArray[0].category }}
           </h3>
           <div class="flex justify-between items-center">
-            <h3 class="text-lg">{{ productArray[0].chosenSize }}</h3>
+            <h3 class="text-xs">{{ productArray[0].chosenSize.toUpperCase() }}</h3>
             <div class="flex items-center">
-
                 <img src="/src/assets/icons/arrow-icon.svg" alt="arrow right icon" @click="decreaseQuantity(productArray[0])" class="flex  rotate-180 w-4 py-2 mr-1 cursor-pointer ">
-
-
               <h3 class="text-base border border-gray-800 px-2">{{ productArray.length }}</h3>
               <img src="/src/assets/icons/arrow-icon.svg" alt="arrow right icon" @click="increaseQuantity(productArray[0])" class="w-4 py-2 ml-1  cursor-pointer" ></div>
-
-
           </div>
         </div>
         <div class="flex flex-col justify-between mx-3">
