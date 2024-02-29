@@ -78,21 +78,22 @@ export default {
     });
 
     const toggleFavorite = (product) => {
-      let favoritesArray = JSON.parse(localStorage.getItem("favoritesArray"))||[];
-      if (favoritesArray.includes(product.title)){
+      let favoritesArray =
+        JSON.parse(localStorage.getItem("favoritesArray")) || [];
+       if (favoritesArray.includes(product.title)){
         favoritesArray = favoritesArray.filter((item) => item !== product.title);
         isFavorite.value = false
       }
       else{
-        favoritesArray.push(product.title)
-        isFavorite.value = true
+        favoritesArray.push(product.title);
+          isFavorite.value = true
       }
 
       localStorage.setItem("favoritesArray", JSON.stringify(favoritesArray));
 
       console.log(favoritesArray)
       console.log(isFavorite)
-    }
+    };
 
     return {toggleFavorite,
     isFavorite, checkFavorite  }
