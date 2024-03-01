@@ -1,59 +1,93 @@
 <script setup>
-    import { ref } from 'vue'
-    import SideMenu from './SideMenu.vue'
-    import CartMenu from './CartMenu.vue'
-    import { useRouter } from 'vue-router'
-    const sideMenuActive = ref(false)
-    const cartMenuActive = ref(false)
-    const searchInput = ref('')
+import { ref, computed, onMounted, onBeforeUnmount } from "vue";
+import SideMenu from "./SideMenu.vue";
+import CartMenu from "./CartMenu.vue";
+import { useRouter } from "vue-router";
 
-    const router = useRouter()
-    const handleSideMenuActivation = () => {
-        sideMenuActive.value = !sideMenuActive.value
-    }
+const sideMenuActive = ref(false);
+const cartMenuActive = ref(false);
+const searchInput = ref("");
+const isScrolled = ref(false);
 
-    const handleCartMenuActivation = () => {
-        cartMenuActive.value = !cartMenuActive.value
-    }
+const router = useRouter();
+
+const handleSideMenuActivation = () => {
+  sideMenuActive.value = !sideMenuActive.value;
+};
+
+const handleCartMenuActivation = () => {
+  cartMenuActive.value = !cartMenuActive.value;
+};
 
     const handleSearch = () => {
         router.push({ path: '/search/all/' + searchInput.value })
         console.log(searchInput.value)
     }
 
+
+// Handle scroll event
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 0;
+};
+
+// Add event listeners on component mount
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+// Remove event listeners on component unmount
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
+
+const logoSrc = computed(() => {
+  return isScrolled.value
+    ? "/src/assets/small-logo.png" // Use this logo when scrolled
+    : "/src/assets/logo.png"; // Use the default logo when not scrolled
+});
+const logoAltSrc = computed(() => {
+  return isScrolled.value
+    ? "/src/assets/small-alt-logo.png" // Use this logo when scrolled
+    : "/src/assets/alt-logo.png"; // Use the default logo when not scrolled
+});
+
+const bottomContainerClass = computed(() => {
+  return isScrolled.value ? "hidden" : "";
+});
 </script>
 
 <template>
-    <div id="navbar" class="z-50 text-[#f5f5f5] top-0">
-        <SideMenu
-            :side-menu-active="sideMenuActive"
-            @handle-side-menu-activation="handleSideMenuActivation"
-        />
+  <div id="navbar" class="z-50 text-[#f5f5f5] top-0 sticky">
+    <SideMenu
+      :side-menu-active="sideMenuActive"
+      @handle-side-menu-activation="handleSideMenuActivation"
+    />
 
-        <CartMenu
-            :cart-menu-active="cartMenuActive"
-            @handle-cart-menu-activation="handleCartMenuActivation"
-        />
+    <CartMenu
+      :cart-menu-active="cartMenuActive"
+      @handle-cart-menu-activation="handleCartMenuActivation"
+    />
 
-        <div
-            id="navbar-top-container"
-            class="flex items-center bg-[#1c1c1c] p-3"
-        >
-            <div id="navbar-left" class="flex-1 flex justify-center">
-                <div id="input-container" class="relative max-md:hidden">
-                    <input
-                        type="text"
-                        class="w-64 h-10 rounded-full pl-10 text-black"
-                        placeholder="Search"
-                        v-model="searchInput"
-                        @keyup.enter="handleSearch"
-                    />
-                    <img
-                        src="/src/assets/icons/search-icon.svg"
-                        alt=""
-                        class="absolute transition-all z-10 duration-500 pl-2 top-2 h-6"
-                    />
-                </div>
+    <div
+      id="navbar-top-container"
+      class="flex items-center bg-[#1c1c1c] p-3 transition-all h-32 w-full"
+      :class="{ 'slim-navbar': isScrolled }"
+    >
+      <div id="navbar-left" class="flex-1 flex justify-center">
+        <div id="input-container" class="relative max-md:hidden">
+          <input
+            type="text"
+            class="w-64 h-10 rounded-full pl-10 text-black focus:outline-[#1e1e1e]"
+            placeholder="Search"
+            v-model="searchInput"
+            @keyup.enter="handleSearch"
+          />
+          <img
+            src="/src/assets/icons/search-icon.svg"
+            alt=""
+            class="absolute transition-all z-10 duration-500 pl-2 top-2 h-6"
+          />
+        </div>
 
                 <div
                     id="left-side-mobile"
@@ -94,11 +128,7 @@
                     />
                     <h2 class="pl-1 pt-0.5 max-md:hidden">Login</h2>
                 </div>
-
-                    <router-link to="/favorites/favorites">
-                        <div class="flex pr-1">
-                    <svg class="min-w-6 text-[#F5F5F5] hover:fill-[#FF007A] hover:scale-90 transition-transform duration-300 transform ease-in-out" viewBox="0 0 24 24"  fill="none"  stroke="currentColor">  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg><h2 class="pl-1 pt-0.5 max-md:hidden hover:text-[#ff007a]">Favorites</h2></div></router-link>
-
+                <svg class="min-w-6 text-[#F5F5F5] hover:fill-[#FF007A] hover:scale-90 transition-transform duration-300 transform ease-in-out" viewBox="0 0 24 24"  fill="none"  stroke="currentColor">  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg><h2 class="pl-1 pt-0.5 max-md:hidden hover:text-[#ff007a]">Favorites</h2></div></router-link>
                 <div
                     class="flex cursor-pointer pr-1"
                     @click="handleCartMenuActivation"
@@ -158,3 +188,39 @@
         </div>
     </div>
 </template>
+
+<style scoped>
+#logo-container:hover #logo1 {
+  opacity: 0;
+}
+
+#logo-container:hover #logo2 {
+  opacity: 1;
+}
+
+.slim-navbar #logo1 {
+  height: 3rem;
+}
+
+#navbar-top-container {
+  transition:
+    height 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+}
+
+.slim-navbar {
+  height: 4rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: #1c1c1c; /* Adjust the color as needed */
+  border-bottom: 5px solid #0c0c0c;
+}
+
+/* #navbar-bottom-container {
+  transition: height 0.3s ease-in-out;
+} */
+
+.slim-navbar #navbar-bottom-container {
+  height: 0;
+}
+</style>
