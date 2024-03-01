@@ -60,7 +60,7 @@ export default {
       }
     },
   },
-  setup(props) {
+  setup(props, { emit }) {
     const isFavorite = ref();
 
     const checkFavorite = (product) => {
@@ -91,6 +91,7 @@ export default {
           isFavorite.value = true
       }
       localStorage.setItem("favoritesArray", JSON.stringify(favoritesArray));
+      emit('toggle-favorite');
 }
 
     return {toggleFavorite,
