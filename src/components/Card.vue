@@ -14,15 +14,14 @@
 <template>
   <div
     id="card-background"
-    class="flex flex-col rounded shadow overflow-hidden bg-[#1c1c1c]"
+    class="flex flex-col rounded-lg shadow overflow-hidden bg-[#1c1c1c]"
     v-if="show">
-  <div>
-    <RouterLink :to="`/products/${product.id}`">
+  <div class="flex relative">
+    <RouterLink :to="`/products/${product.id}`" class="flex-1">
       <!-- The card links to the product page, that in turn pass these props to the productInfo component on call -->
       <img :src="cardImgSrc" class="w-full h-32 sm:h-48 lg:h-56 xl:h-[25vh]object-cover" />
    </RouterLink>
-<!--    text-[#FF007A] hover:fill-[#FF007A]
- -->   <div @click="toggleFavorite(product)"><svg class="h-8 w-8 text-[#FF007A]" :class="{'fill-[#FF007A]': isFavorite}" viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg></div>
+   <div @click="toggleFavorite(product)" class="absolute right-0"><svg class="h-10 w-10 text-[#FF007A] rounded-bl-lg bg-black bg-opacity-50" :class="{'fill-[#FF007A]': isFavorite}" viewBox="-3 -1 29 26"  fill="none"  stroke="currentColor">  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg></div>
   </div>
 
     <div
@@ -60,7 +59,7 @@ export default {
       }
     },
   },
-  setup() {
+  setup(props) {
     const isFavorite = ref();
 
     const checkFavorite = (product) => {
@@ -74,7 +73,7 @@ export default {
     }
 
     onMounted(() => {
-      checkFavorite();
+      checkFavorite(props.product);
     });
 
     const toggleFavorite = (product) => {
