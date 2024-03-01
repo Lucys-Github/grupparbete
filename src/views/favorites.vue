@@ -22,16 +22,6 @@ export default {
         if(favoritesArray !== null){
     return favoritesArray.includes(product.title);}
     };
-    console.log(filteredArray)
-
-
-    let hasFavorites = "";
-    if(favoritesArray !== null){
-        hasFavorites = true
-    }
-    else{
-        hasFavorites = false
-    }
 
     watch(
         () => store.productsCatalogue,
@@ -44,16 +34,14 @@ export default {
 
     return {
             filteredArray,
-            hasFavorites
             }
-
 }
 }
 
 </script>
 
 <template>
-     <div v-if="hasFavorites">
+     <div v-if="filteredArray.length > 0">
     <p class="text-2xl font-antonio pt-4 pl-4">Favorites</p>
     <div
         class="grid xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4 2xl:gap-[1.7vw] p-4">
@@ -67,7 +55,7 @@ export default {
    </div>
   <div v-else>
   <p class="text-2xl font-antonio pt-4 pl-4">Favorites</p>
-  <p class="text-center" >no favorite products</p>
+  <p class="font-antonio pt-4 pl-4"> No favorite products</p>
 </div>
 
 </template>
