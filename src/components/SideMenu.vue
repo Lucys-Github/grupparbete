@@ -16,11 +16,17 @@ const handleCategoriesClick = () => {
   <div
     id="side-menu-container"
     :class="
-      'fixed flex h-full w-full z-50 text-[#f5f5f5] transition-all duration-300' +
-      (sideMenuActive ? 'translate-x-0' : ' -translate-x-full')
+      ' fixed flex h-full top-0 w-full z-50 bg-[rgba(0,0,0,.3)] text-[#f5f5f5] transition-all duration-300' +
+      (sideMenuActive ? 'opacity-100' : ' opacity-0 pointer-events-none')
     "
   >
-    <div id="side-menu" class="h-full w-[70%] max-w-[400px] bg-[#1c1c1c]">
+    <div
+      id="side-menu"
+      :class="
+        ' h-full w-[70%] max-w-[400px] bg-[#1c1c1c] transition-all duration-300 ' +
+        (sideMenuActive ? 'translate-x-0' : ' -translate-x-full')
+      "
+    >
       <div id="top" class="flex justify-end items-center border-b border-black">
         <img
           src="/src/assets/icons/close-icon.svg"
@@ -88,7 +94,7 @@ const handleCategoriesClick = () => {
     </div>
     <div
       id="overlay"
-      class="flex-1 bg-[rgba(0,0,0,.3)]"
+      class="flex-1"
       @click="emit('handle-side-menu-activation')"
     ></div>
   </div>
