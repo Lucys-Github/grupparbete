@@ -160,7 +160,7 @@ function decreaseButton(count) {
   return isDisabled;
 }
 
-const selectedSize = ref(undefined);
+const selectedSize = ref("");
 
 const cart = useCartStore();
 
