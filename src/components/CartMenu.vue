@@ -50,7 +50,7 @@ getTotalAmount();
       class="flex-1 bg-[rgba(0,0,0,.3)] text-[#f5f5f5]"
       @click="emit('handle-cart-menu-activation')"
     ></div>
-    <div id="cart-menu" class="h-full w-[70%] max-w-[400px] bg-[#1c1c1c]">
+    <div id="cart-menu" class="h-full w-[80%] max-w-[400px] bg-[#1c1c1c]">
       <div id="top" class="relative h-16 flex justify-start items-center">
         <img
           src="/src/assets/icons/close-icon.svg"
