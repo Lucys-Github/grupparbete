@@ -160,7 +160,7 @@ function decreaseButton(count) {
   return isDisabled;
 }
 
-const selectedSize = ref(undefined);
+const selectedSize = ref("");
 
 const cart = useCartStore();
 
@@ -179,7 +179,6 @@ function addClicked(item, selectedSize, amount) {
     console.log(selectedSize);
   }
 }
-function pleaseSelect() {}
 
 const increase = () => {
   count.value++;
