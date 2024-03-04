@@ -3,13 +3,19 @@ import { ref, computed, onMounted, onBeforeUnmount } from "vue";
 import SideMenu from "./SideMenu.vue";
 import CartMenu from "./CartMenu.vue";
 import { useRouter } from "vue-router";
+import SearchMenu from "./SearchMenu.vue";
 
 const sideMenuActive = ref(false);
 const cartMenuActive = ref(false);
+const searchMenuActive = ref(false);
 const searchInput = ref("");
 const isScrolled = ref(false);
 
 const router = useRouter();
+
+const handleSearchMenuActivation = () => {
+  searchMenuActive.value = !searchMenuActive.value;
+};
 
 const handleSideMenuActivation = () => {
   sideMenuActive.value = !sideMenuActive.value;
@@ -67,6 +73,11 @@ const bottomContainerClass = computed(() => {
       @handle-cart-menu-activation="handleCartMenuActivation"
     />
 
+    <SearchMenu
+      :search-menu-active="searchMenuActive"
+      @handle-search-menu-activation="handleSearchMenuActivation"
+    />
+
     <div
       id="navbar-top-container"
       class="flex items-center bg-[#1c1c1c] p-3 transition-all h-32 w-full"
@@ -101,7 +112,8 @@ const bottomContainerClass = computed(() => {
           <img
             src="/src/assets/icons/search-icon-black.svg"
             alt=""
-            class="h-6"
+            class="h-6 cursor-pointer"
+            @click="handleSearchMenuActivation"
           />
         </div>
       </div>
