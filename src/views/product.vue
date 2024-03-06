@@ -48,10 +48,12 @@ watch(
     </div>
   </div>
   <!-- grid for the cards -->
+  <h2 class="text-2xl col-span-full font-antonio px-4 pt-4">
+    Similar products
+  </h2>
   <div
-    class="xl:px-[10%] grid xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4 2xl:gap-[1.7vw] p-4"
+    class="xl:px-[10%] p-4 grid xl:grid-cols-5 md:grid-cols-4 max-md:flex max-md:w-full max-md:overflow-x-auto max-md:gap-2"
   >
-    <h2 class="text-2xl col-span-full font-antonio pt-4">Similar products</h2>
     <Card
       class="col-span-1"
       v-for="product in products"
