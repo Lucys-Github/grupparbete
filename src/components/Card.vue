@@ -44,7 +44,7 @@
     </div>
     <div
       id="product-info"
-      class="flex flex-row self-stretch items-center px-2 py-3 md:py-4 space-x-2 justify-around h-full max-md:flex-col max-md:items-start max-md:space-x-0"
+      class="flex flex-row self-stretch items-center px-2 py-3 md:py-4 space-x-2 justify-around h-full max-sm:flex-col max-sm:items-start max-sm:space-x-0"
     >
       <div id="title-brand" class="flex flex-col stretch flex-wrap space-y-1">
         <h3 class="text-sm xl:text-m font-medium">{{ product.title }}</h3>
@@ -53,7 +53,7 @@
         </h4>
       </div>
       <!-- end title-brand -->
-      <h2 class="text-sm lg:text-md flex-none max-md:mt-2">
+      <h2 class="text-sm lg:text-md flex-none max-sm:mt-2">
         {{ product.price }}kr
       </h2>
     </div>
