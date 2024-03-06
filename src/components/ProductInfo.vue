@@ -107,7 +107,7 @@
               name="decrease"
               @click="decrease()"
               label="-"
-              class="px-2 font-extrabold bg-[#FF007A] disabled:bg-[#a3a3a3] text-black"
+              class="px-2 font-extrabold bg-[#FF007A] disabled:bg-[#858585] text-black"
               :disabled="decreaseButton(count)"
             >
               -
@@ -143,7 +143,8 @@
         <button
           @click="addClicked(props.item, selectedSize, count)"
           label="Add to cart"
-          class="p-4 bg-[#0d0d0d] rounded-full hover:opacity-90 font-inter hover:border-b-2 hover:border-[#ff007a]"
+          class="p-4 bg-[#0d0d0d] rounded-full hover:opacity-90 font-inter hover:border-b-2 hover:border-[#ff007a] disabled:opacity-20"
+          :disabled="selectedSize === ''"
         >
           Add to cart
           <img
