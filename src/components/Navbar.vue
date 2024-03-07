@@ -132,6 +132,7 @@ const bottomContainerClass = computed(() => {
           />
         </div>
       </div>
+      <!-- LOGO START -->
       <div id="navbar-center" class="flex flex-1 justify-center">
         <div id="logo-container" class="mx-5 relative">
           <router-link to="/">
@@ -150,6 +151,7 @@ const bottomContainerClass = computed(() => {
           </router-link>
         </div>
       </div>
+      <!-- LOGO END -->
       <div
         id="navbar-right"
         class="flex flex-1 justify-center gap-4 max-sm:gap-5 max-md:gap-9 max-md:justify-end max-md:mr-5 text-sm"
