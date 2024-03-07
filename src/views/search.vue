@@ -100,7 +100,7 @@ export default {
 <template>
   <div
     id="breacrumbs"
-    class="flex justify-center my-3 col-span-full font-inter max-md:hidden"
+    class="flex justify-center my-3 col-span-full font-inter max-md:hidden text-sm"
   >
     <router-link to="/">
       <h3 class="text-[#858585] hover:text-[#f5f5f5]">Home</h3>
