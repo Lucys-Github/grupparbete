@@ -36,6 +36,10 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+  scrollBehavior() {
+    // Always scroll to the top of the page when navigating to a new route
+    return { top: 0 };
+  },
 });
 
 export default router;
