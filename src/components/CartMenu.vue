@@ -79,11 +79,13 @@ getTotalAmount();
             <h3>Total Cost:</h3>
             <h3>{{ totalAmount }}:-</h3>
           </div>
+          <router-link to="/checkout/checkout">
           <button
             class="p-4 bg-[#1c1c1c] rounded-full hover:bg-[#1f1f1f] mt-8 font-inter hover:border-b-2 hover:border-[#ff007a]"
           >
             Checkout
           </button>
+        </router-link>
         </div>
       </div>
     </div>
