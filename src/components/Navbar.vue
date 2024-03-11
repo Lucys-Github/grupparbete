@@ -241,8 +241,11 @@ const bottomContainerClass = computed(() => {
               :class="
                 ' absolute -top-2 -right-[0.55rem] size-5 rounded-full bg-[#0c0c0c] text-[#ff007a] flex justify-center items-center text-xs font-medium transition-all duration-300 ' +
                 (cartProductsAmount > 0 ? '' : 'hidden') +
-                (cartUpdated
+                (cartUpdated && !isScrolled
                   ? ' -translate-y-3 scale-150 '
+                  : ' translate-y-0 scale-100 ') +
+                (cartUpdated && isScrolled
+                  ? ' -translate-y-2 scale-150 '
                   : ' translate-y-0 scale-100 ')
               "
               >{{ cartProductsAmount }}</span
