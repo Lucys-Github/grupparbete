@@ -45,70 +45,97 @@ getTotalAmount();
                             "\s?-?" = optional whitespace or hyphen
                          -->
                         <legend>Delivery Information</legend>
-                        <input id="email" aria-label="Email" type="email" placeholder="Email" class="w-full" required maxlength="320">
+                        <input id="email" aria-label="Email" type="email" placeholder="Email" class="w-full" required
+                            maxlength="320">
                         <input id="phoneNumber" aria-label="Phone number" type="text" placeholder="Phone number"
                             pattern="(\+?(\d\s?-?){11}|(\d\s?-?){10})" required>
-                        <input id="firstName" aria-label="First name" type="text" placeholder="First name" pattern="[\p{L}a-z]{1,30}" required>
-                        <input id="lastName" aria-label="Last name" type="text" placeholder="Last name" pattern="[\p{L}a-z]{1,30}" required>
+                        <input id="firstName" aria-label="First name" type="text" placeholder="First name"
+                            pattern="[\p{L}a-z]{1,30}" required>
+                        <input id="lastName" aria-label="Last name" type="text" placeholder="Last name"
+                            pattern="[\p{L}a-z]{1,30}" required>
                         <input id="adress" aria-label="Delivery adress" type="text" placeholder="Delivery adress"
                             pattern="[\p{L}a-z]{0,30}\s?\d{1,3}" required>
-                        <input id="postCode" aria-label="Post code" type="text" placeholder="Post code" required pattern="\d{3}\s?\d{2}">
-                        <input id="postTown" aria-label="Post town" type="text" placeholder="Post town" required pattern="[\p{L}a-z]{1,15}">
+                        <input id="postCode" aria-label="Post code" type="text" placeholder="Post code" required
+                            pattern="\d{3}\s?\d{2}">
+                        <input id="postTown" aria-label="Post town" type="text" placeholder="Post town" required
+                            pattern="[\p{L}a-z]{1,15}">
                     </fieldset>
                 </div>
                 <!-- checkout cart div -->
                 <div id="cart" class="bg-[#1c1c1c] row-span-3">
                     <h2 class="text-[#F5F5F5]">Cart</h2>
                     <div class="mt-[2cqh]">
-                    <CartCards :editAllowed="false" />
-                    <div class="h-72 flex flex-col">
-                        <div class="flex justify-between mt-6 font-inter">
-                            <h3>Delivery Cost</h3>
-                            <h3>0:-</h3>
-                        </div>
-                        <div class="flex justify-between mt-8 font-inter">
-                            <h3>Total Cost:</h3>
-                            <h3>{{ totalAmount }}:-</h3>
+                        <CartCards :editAllowed="false" />
+                        <div class="h-72 flex flex-col">
+                            <div class="flex justify-between mt-6 font-inter">
+                                <h3>Delivery Cost</h3>
+                                <h3>0:-</h3>
+                            </div>
+                            <div class="flex justify-between mt-8 font-inter">
+                                <h3>Total Cost:</h3>
+                                <h3>{{ totalAmount }}:-</h3>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
 
-                    <!-- Shipment method div -->
-                    <div class="bg-[#1c1c1c]">
-                        <fieldset id="shippingMethod">
-                            <legend>Shipping method</legend>
-                            <div class="ring-white ring-2">
-                                <div>
-                                    <input id="postnord" type="radio" value="postnord" name="shippingMethod">
-                                    <label for="postnord">Postnord</label>
-                                </div>
-                                <div>
-                                    <input id="instabox" type="radio" value="instabox" name="shippingMethod">
-                                    <label for="instabox">Instabox</label>
-                                </div>
-                                <div>
-                                    <input id="dhl" type="radio" value="dhl" name="shippingMethod">
-                                    <label for="dhl">DHL </label>
-                                </div>
+                <!-- Shipment method div -->
+                <div class="bg-[#1c1c1c]">
+                    <fieldset id="shippingMethod">
+                        <legend>Shipping method</legend>
+                        <div class="ring-white ring-2 mt-[2cqh]">
+                            <div class="h-16 ring-white ring-1">
+                                <input id="postnord" type="radio" value="postnord" name="shippingMethod">
+                                <label for="postnord">Postnord</label>
+                                <img src="/src/assets/shipping/postnord-logo.png" alt=""
+                                    class="h-16 w-24 object-cover inline">
                             </div>
-                        </fieldset>
-                    </div>
-                    <!-- payment method div -->
-                    <div class="bg-[#1c1c1c]">
-                        <fieldset id="paymentMethod">
-                            <legend>Payment method</legend>
+                            <div class="h-16">
+                                <input id="instabox" type="radio" value="instabox" name="shippingMethod">
+                                <label for="instabox">Instabox</label>
+                                <img src="/src/assets/shipping/Instabox-logo.jpg" alt=""
+                                    class="h-16 w-24 object-cover inline">
+                            </div>
+                            <div class="h-16 ring-white ring-1">
+                                <input id="dhl" type="radio" value="dhl" name="shippingMethod">
+                                <label for="dhl">DHL </label>
+                                <img src="/src/assets/shipping/dhl-logo.png" alt=""
+                                    class="h-16 w-24 object-cover inline">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <!-- payment method div -->
+                <div class="bg-[#1c1c1c]">
+                    <fieldset id="paymentMethod">
+                        <legend>Payment method</legend>
+                        <div>
                             <input id="swish" type="radio" value="swish" name="paymentMethod">
                             <label for="swish">Swish</label>
+                            <img src="/src/assets/payment" alt=""
+                                    class="h-16 w-24 object-cover inline">
+                        </div>
+                        <div>
                             <input id="klarna" type="radio" value="klarna" name="paymentMethod">
                             <label for="klarna">Klarna</label>
+                            <img src="/src/assets/shipping/dhl-logo.png" alt=""
+                                    class="h-16 w-24 object-cover inline">
+                        </div>
+                        <div>
                             <input id="masterCard" type="radio" value="masterCard" name="paymentMethod">
                             <label for="masterCard">Mastercard </label>
+                            <img src="/src/assets/shipping/dhl-logo.png" alt=""
+                                    class="h-16 w-24 object-cover inline">
+                        </div>
+                        <div>
                             <input id="visa" type="radio" value="visa" name="paymentMethod">
                             <label for="visa">VISA</label>
-                        </fieldset>
-                    </div>
+                            <img src="/src/assets/shipping/dhl-logo.png" alt=""
+                                    class="h-16 w-24 object-cover inline">
+                        </div>
+                    </fieldset>
                 </div>
+            </div>
         </form>
     </div>
 </template>
@@ -156,21 +183,4 @@ h2 {
 #deliveryInfo>input:focus:invalid {
     outline: 1px solid #FF3666;
 }
-
-
-
-
-
-
-
-
-
-input[type="radio"]+label {
-    display: inline;
-}
-
-
-
-/* input:not([type="radio"]):invalid {}
- */
 </style>
