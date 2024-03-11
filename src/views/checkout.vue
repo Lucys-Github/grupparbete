@@ -1,9 +1,33 @@
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, onMounted, computed } from "vue";
 import { useCartStore } from "../store";
 import CartCards from "../components/CartCards.vue";
 
+/* Disable/enable fieldsets logic */
 
+const deliveryInfo = ref();
+
+onMounted(() => {
+    const inputs = Array.from(deliveryInfo.value.getElementsByTagName('input'))
+    console.log(inputs)
+    const areInputsValid = computed(() => {
+        return inputs.every(input => input.checkValidity());
+    });
+
+    if (areInputsValid.value) {
+        console.log('All inputs are valid.');
+    } else {
+        console.log('No inputs are invalid.');
+    }
+
+})
+
+
+
+
+
+
+/* Imported cart functions */
 const store = useCartStore();
 
 const totalAmount = ref(0);
@@ -39,7 +63,7 @@ getTotalAmount();
             <div class="grid p-4 grid-cols-2 grid-rows-3 gap-4 2xl:gap-[1.7vw] font-inter ">
                 <!-- delivery information div -->
                 <div class="bg-[#1c1c1c]">
-                    <fieldset id="deliveryInfo">
+                    <fieldset id="deliveryInfo" ref="deliveryInfo">
                         <!-- regex:
                             "[\p{L}a-z]" = letters including swedish/international letters
                             "\s?-?" = optional whitespace or hyphen
@@ -84,23 +108,23 @@ getTotalAmount();
                     <fieldset id="shippingMethod">
                         <legend>Shipping method</legend>
                         <div class="ring-white ring-2 mt-[2cqh]">
-                            <div class="h-16 ring-white ring-1">
+                            <div class=" ring-white ring-1 flex flex-row items-center">
                                 <input id="postnord" type="radio" value="postnord" name="shippingMethod">
                                 <label for="postnord">Postnord</label>
                                 <img src="/src/assets/shipping/postnord-logo.png" alt=""
-                                    class="h-16 w-24 object-cover inline">
+                                    class="h-16 w-28 object-cover inline ml-auto">
                             </div>
-                            <div class="h-16">
+                            <div class="flex flex-row items-center">
                                 <input id="instabox" type="radio" value="instabox" name="shippingMethod">
                                 <label for="instabox">Instabox</label>
                                 <img src="/src/assets/shipping/Instabox-logo.jpg" alt=""
-                                    class="h-16 w-24 object-cover inline">
+                                    class="h-16 w-28 object-cover inline ml-auto">
                             </div>
-                            <div class="h-16 ring-white ring-1">
+                            <div class="ring-white ring-1 flex flex-row items-center">
                                 <input id="dhl" type="radio" value="dhl" name="shippingMethod">
                                 <label for="dhl">DHL </label>
                                 <img src="/src/assets/shipping/dhl-logo.png" alt=""
-                                    class="h-16 w-24 object-cover inline">
+                                    class="h-16 w-28 object-cover inline ml-auto">
                             </div>
                         </div>
                     </fieldset>
@@ -109,29 +133,31 @@ getTotalAmount();
                 <div class="bg-[#1c1c1c]">
                     <fieldset id="paymentMethod">
                         <legend>Payment method</legend>
-                        <div>
-                            <input id="swish" type="radio" value="swish" name="paymentMethod">
-                            <label for="swish">Swish</label>
-                            <img src="/src/assets/payment" alt=""
-                                    class="h-16 w-24 object-cover inline">
-                        </div>
-                        <div>
-                            <input id="klarna" type="radio" value="klarna" name="paymentMethod">
-                            <label for="klarna">Klarna</label>
-                            <img src="/src/assets/shipping/dhl-logo.png" alt=""
-                                    class="h-16 w-24 object-cover inline">
-                        </div>
-                        <div>
-                            <input id="masterCard" type="radio" value="masterCard" name="paymentMethod">
-                            <label for="masterCard">Mastercard </label>
-                            <img src="/src/assets/shipping/dhl-logo.png" alt=""
-                                    class="h-16 w-24 object-cover inline">
-                        </div>
-                        <div>
-                            <input id="visa" type="radio" value="visa" name="paymentMethod">
-                            <label for="visa">VISA</label>
-                            <img src="/src/assets/shipping/dhl-logo.png" alt=""
-                                    class="h-16 w-24 object-cover inline">
+                        <div class="ring-white ring-2 mt-[2cqh]">
+                            <div class="flex flex-row items-center">
+                                <input id="swish" type="radio" value="swish" name="paymentMethod">
+                                <label for="swish">Swish</label>
+                                <img src="/src/assets/payment/swish-logo.jpg" alt=""
+                                    class="h-16 w-28 object-cover inline ml-auto">
+                            </div>
+                            <div class="ring-white ring-1 flex flex-row items-center">
+                                <input id="klarna" type="radio" value="klarna" name="paymentMethod">
+                                <label for="klarna">Klarna</label>
+                                <img src="/src/assets/payment/klarna-logo.jpg" alt=""
+                                    class="h-16 w-28 object-cover inline ml-auto">
+                            </div>
+                            <div class="flex flex-row items-center">
+                                <input id="masterCard" type="radio" value="masterCard" name="paymentMethod">
+                                <label for="masterCard">Mastercard </label>
+                                <img src="/src/assets/payment/mastercard-logo.png" alt=""
+                                    class="h-16 w-28 object-cover inline ml-auto">
+                            </div>
+                            <div class="ring-white ring-1 flex flex-row items-center">
+                                <input id="visa" type="radio" value="visa" name="paymentMethod">
+                                <label for="visa">VISA</label>
+                                <img src="/src/assets/payment/visa-logo.jpg" alt=""
+                                    class="h-16 w-28 object-cover inline ml-auto">
+                            </div>
                         </div>
                     </fieldset>
                 </div>
