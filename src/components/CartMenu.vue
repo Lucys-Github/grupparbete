@@ -66,7 +66,7 @@ getTotalAmount();
       </div>
       <div id="bottom" class="flex flex-col h-full">
         <div class="flex-1 bg-[#1c1c1c] overflow-auto">
-          <CartCards @handle-cart-menu-activation="handleCartMenuActivation" />
+          <CartCards @handle-cart-menu-activation="handleCartMenuActivation" :editAllowed="true" />
         </div>
         <div
           class="h-72 bg-[#0c0c0c] flex flex-col px-4 border-t-2 border-gray-800"

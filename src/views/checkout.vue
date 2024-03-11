@@ -1,4 +1,32 @@
 <script setup>
+import { ref, watch } from "vue";
+import { useCartStore } from "../store";
+import CartCards from "../components/CartCards.vue";
+
+
+const store = useCartStore();
+
+const totalAmount = ref(0);
+
+const getTotalAmount = () => {
+    let newTotalAmount = 0;
+    if (!store.cart) {
+        return;
+    }
+    for (const product of store.cart) {
+        newTotalAmount += product.price;
+    }
+    totalAmount.value = newTotalAmount;
+};
+
+watch(
+    () => store.cart,
+    () => {
+        getTotalAmount();
+    },
+);
+
+getTotalAmount();
 
 </script>
 
@@ -6,69 +34,143 @@
 <template>
     <div class="xl:px-[10%] px-4 my-4 overflow-x-hidden">
         <p class="text-2xl font-antonio pt-4 pl-4">Checkout</p>
-        <form>
+        <form class="font-inter font-light text-[#F5F5F5] ">
+            <!-- checkout page grid -->
             <div class="grid p-4 grid-cols-2 grid-rows-3 gap-4 2xl:gap-[1.7vw] font-inter ">
+                <!-- delivery information div -->
                 <div class="bg-[#1c1c1c]">
-                    <fieldset class="p-4">
-                        <legend class="text-[#F5F5F5] pt-4">Delivery Information</legend>
-                        <label for="email">Email</label>
-                        <input id="email" type="email" placeholder="Email"
-                            class="placeholder-[#505050] text-black bg-[#F5F5F5] w-full"
-                            required maxlength="320">
-                        <label for="phoneNumber">Phone number</label>
-                        <input id="phoneNumber" type="text" placeholder="Phone number"
-                            class="placeholder-[#505050] text-black bg-[#F5F5F5]"
-                            pattern="\+?\d{3}" required>
-                        <div class="inline">
-                            <label for="firstName">First name</label>
-                            <input id="firstName" type="text" placeholder="First name"
-                                class="placeholder-[#505050]  text-black bg-[#F5F5F5]" pattern="[a-z]{0,30}" required>
-                        </div>
-                        <div class="inline">
-                            <label for="lastName">Last name </label>
-                            <input id="lastName" type="text" placeholder="Last name"
-                                class="placeholder-[#505050] text-black bg-[#F5F5F5]"  pattern="[a-z]{0,30}" required>
-                        </div>
-                        <label for="adress">Delivery adress</label>
-                        <input id="adress" type="text" placeholder="Delivery adress"
-                            class="placeholder-[#505050] text-black bg-[#F5F5F5]">
-                        <label for="postCode">Post code</label>
-                        <input id="postCode" type="number" placeholder="Post code"
-                            class="placeholder-[#505050] text-black bg-[#F5F5F5]">
-                        <label for="postTown">Post town</label>
-                        <input id="postTown" type="text" placeholder="Post town"
-                            class="placeholder-[#505050] text-black bg-[#F5F5F5]">
+                    <fieldset id="deliveryInfo">
+                        <!-- regex:
+                            "[\p{L}a-z]" = letters including swedish/international letters
+                            "\s?-?" = optional whitespace or hyphen
+                         -->
+                        <legend>Delivery Information</legend>
+                        <input id="email" aria-label="Email" type="email" placeholder="Email" class="w-full" required maxlength="320">
+                        <input id="phoneNumber" aria-label="Phone number" type="text" placeholder="Phone number"
+                            pattern="(\+?(\d\s?-?){11}|(\d\s?-?){10})" required>
+                        <input id="firstName" aria-label="First name" type="text" placeholder="First name" pattern="[\p{L}a-z]{1,30}" required>
+                        <input id="lastName" aria-label="Last name" type="text" placeholder="Last name" pattern="[\p{L}a-z]{1,30}" required>
+                        <input id="adress" aria-label="Delivery adress" type="text" placeholder="Delivery adress"
+                            pattern="[\p{L}a-z]{0,30}\s?\d{1,3}" required>
+                        <input id="postCode" aria-label="Post code" type="text" placeholder="Post code" required pattern="\d{3}\s?\d{2}">
+                        <input id="postTown" aria-label="Post town" type="text" placeholder="Post town" required pattern="[\p{L}a-z]{1,15}">
                     </fieldset>
                 </div>
-                <div class="bg-[#1c1c1c] row-span-3">
-                    <p class="text-[#F5F5F5]">Cart</p>
+                <!-- checkout cart div -->
+                <div id="cart" class="bg-[#1c1c1c] row-span-3">
+                    <h2 class="text-[#F5F5F5]">Cart</h2>
+                    <div class="mt-[2cqh]">
+                    <CartCards :editAllowed="false" />
+                    <div class="h-72 flex flex-col">
+                        <div class="flex justify-between mt-6 font-inter">
+                            <h3>Delivery Cost</h3>
+                            <h3>0:-</h3>
+                        </div>
+                        <div class="flex justify-between mt-8 font-inter">
+                            <h3>Total Cost:</h3>
+                            <h3>{{ totalAmount }}:-</h3>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-[#1c1c1c]"> third div
                 </div>
-                <div class="bg-[#1c1c1c]"> third div
+
+                    <!-- Shipment method div -->
+                    <div class="bg-[#1c1c1c]">
+                        <fieldset id="shippingMethod">
+                            <legend>Shipping method</legend>
+                            <div class="ring-white ring-2">
+                                <div>
+                                    <input id="postnord" type="radio" value="postnord" name="shippingMethod">
+                                    <label for="postnord">Postnord</label>
+                                </div>
+                                <div>
+                                    <input id="instabox" type="radio" value="instabox" name="shippingMethod">
+                                    <label for="instabox">Instabox</label>
+                                </div>
+                                <div>
+                                    <input id="dhl" type="radio" value="dhl" name="shippingMethod">
+                                    <label for="dhl">DHL </label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <!-- payment method div -->
+                    <div class="bg-[#1c1c1c]">
+                        <fieldset id="paymentMethod">
+                            <legend>Payment method</legend>
+                            <input id="swish" type="radio" value="swish" name="paymentMethod">
+                            <label for="swish">Swish</label>
+                            <input id="klarna" type="radio" value="klarna" name="paymentMethod">
+                            <label for="klarna">Klarna</label>
+                            <input id="masterCard" type="radio" value="masterCard" name="paymentMethod">
+                            <label for="masterCard">Mastercard </label>
+                            <input id="visa" type="radio" value="visa" name="paymentMethod">
+                            <label for="visa">VISA</label>
+                        </fieldset>
+                    </div>
                 </div>
-            </div>
         </form>
     </div>
 </template>
 
+
 <style scoped>
-label {
-    display: block;
-    margin-top: 1em;
+/* Custom css made to avoid repeat tailwind class declarations on elements */
+
+/* General styling */
+fieldset,
+#cart {
+    padding: 0 3rem 3rem 3rem;
 }
 
-input:focus {
-    outline: 3px solid #FF007A !important;
-    border: 2px solid black ;
+legend,
+h2 {
+    color: #F5F5F5;
+    padding-top: 3rem;
+    font-weight: bold;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+/* input elements styling (for input that !== radio buttons) */
+::placeholder {
+    color: #858585;
+}
+
+#deliveryInfo>input {
+    background: #1C1C1C;
+    outline: 1px solid #858585;
+    padding-left: 1cqw;
+    margin-top: 2cqh;
+    margin-bottom: 1cqh;
+}
+
+#deliveryInfo>input:focus:placeholder-shown {
+    outline: 3px solid #00E0FF !important;
+}
+
+#deliveryInfo>input:focus:valid {
+    outline: 1px solid #00FF66;
+}
+
+#deliveryInfo>input:focus:invalid {
+    outline: 1px solid #FF3666;
 }
 
 
-input:valid {
-    outline: 2px solid palegreen;
+
+
+
+
+
+
+
+input[type="radio"]+label {
+    display: inline;
 }
 
-input:invalid {
-    outline: 2px solid red;
-}
+
+
+/* input:not([type="radio"]):invalid {}
+ */
 </style>
