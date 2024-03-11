@@ -1,10 +1,12 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "./views/home.vue";
+import Error from "./views/error.vue";
 import Search from "./views/search.vue";
 import Product from "./views/product.vue";
 import Favorites from "./views/favorites.vue";
 import Checkout from "./views/checkout.vue";
 import Error from "./views/error.vue";
+import OrderConfirmation from "./views/orderConfirmation.vue";
 
 const routes = [
   {
@@ -31,6 +33,11 @@ const routes = [
     path: "/checkout/checkout",
     name: "Checkout",
     component: Checkout,
+  },
+  {
+    path: "/orderConfirmation",
+    name: "OrderConfirmation",
+    component: OrderConfirmation,
   },
   { path: "/:catchAll(.*)", name: "Error", component: Error },
 ];
