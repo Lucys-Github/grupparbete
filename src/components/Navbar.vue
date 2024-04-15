@@ -66,8 +66,8 @@ onBeforeUnmount(() => {
 
 const logoSrc = computed(() => {
   return isScrolled.value
-    ? "/src/assets/small-logo.png" // Slim logo when scrolled
-    : "/src/assets/logo.png"; // Default logo when not scrolled
+    ? "assets/small-logo.png" // Slim logo when scrolled
+    : "assets/logo.png"; // Default logo when not scrolled
 });
 const logoAltSrc = computed(() => {
   return isScrolled.value
