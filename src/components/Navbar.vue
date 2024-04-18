@@ -6,6 +6,7 @@ import { useRouter } from "vue-router";
 import SearchMenu from "./SearchMenu.vue";
 import { useCartStore } from "../store";
 import Logo from "/src/assets/logo.png";
+import SmallLogo from "/src/assets/small-logo.png";
 
 const sideMenuActive = ref(false);
 const cartMenuActive = ref(false);
@@ -67,7 +68,7 @@ onBeforeUnmount(() => {
 
 const logoSrc = computed(() => {
   return isScrolled.value
-    ? "/src/assets/small-logo.png" // Slim logo when scrolled
+    ? smallLogo // Slim logo when scrolled
     : Logo; // Default logo when not scrolled
 });
 const logoAltSrc = computed(() => {
