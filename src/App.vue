@@ -17,6 +17,14 @@ const fetchProducts = async () => {
       .then((response) => response.json())
       .then((result) => {
         store.getProducts(result);
+        const products = ref(store.productsCatalogue);
+        async function loadImages() {
+        for (const productId in products.value) {
+          const product = products.value[productId];
+          const importedImg = await import(`../${product.imgSrc}`);
+            product.img = importedImg.default;
+          }}
+        await loadImages();
       });
   } catch (error) {
     console.log(error);
