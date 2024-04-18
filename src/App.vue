@@ -28,10 +28,11 @@ fetchCart();
 fetchProducts();
 
 const products = ref(store.productsCatalogue);
-        Object.keys(products.value).forEach(async (productId) => {
+Object.keys(products.value).forEach(async (productId) => {
       const product = products.value[productId];
       const path = require(`../${product.imgSrc}`);
       product.img = path.default;
+}
           
 </script>
 
