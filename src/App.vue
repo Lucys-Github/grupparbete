@@ -10,7 +10,7 @@ const fetchCart = () => {
   cartStore.getCart();
 };
 
-require("src/assets/products/jackets/1.jpg")
+import 1 from "src/assets/products/jackets/1.jpg"
   
 const fetchProducts = async () => {
   try {
