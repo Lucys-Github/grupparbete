@@ -7,6 +7,8 @@ import SearchMenu from "./SearchMenu.vue";
 import { useCartStore } from "../store";
 import Logo from "/src/assets/logo.png";
 import SmallLogo from "/src/assets/small-logo.png";
+import AltLogo from "/src/assets/alt-logo.png";
+import SmallAltLogo from "/src/assets/small-alt-logo.png";
 
 const sideMenuActive = ref(false);
 const cartMenuActive = ref(false);
@@ -73,8 +75,8 @@ const logoSrc = computed(() => {
 });
 const logoAltSrc = computed(() => {
   return isScrolled.value
-    ? "/src/assets/small-alt-logo.png" // Slim logo hover when scrolled
-    : "/src/assets/alt-logo.png"; // Default logo hover when not scrolled
+    ? SmallAltLogo  // Slim logo hover when scrolled
+    : AltLogo; // Default logo hover when not scrolled
 });
 
 const bottomContainerClass = computed(() => {
