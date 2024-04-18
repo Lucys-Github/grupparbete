@@ -24,7 +24,7 @@ const fetchProducts = async () => {
           const importedImg = await import(`../${product.imgSrc}`);
             product.img = importedImg.default;
           }}
-        await loadImages();
+        loadImages();
       });
   } catch (error) {
     console.log(error);
