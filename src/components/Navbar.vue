@@ -1,4 +1,4 @@
-<script setup>
+<script setup> 
 import { ref, computed, onMounted, onBeforeUnmount, watch } from "vue";
 import SideMenu from "./SideMenu.vue";
 import CartMenu from "./CartMenu.vue";
