@@ -10,7 +10,8 @@ const fetchCart = () => {
   cartStore.getCart();
 };
 
-
+require("src/assets/products/jackets/1.jpg")
+  
 const fetchProducts = async () => {
   try {
     await fetch("../products.json")
@@ -26,13 +27,6 @@ const fetchProducts = async () => {
 fetchCart();
 
 fetchProducts();
-
-const products = ref(store.productsCatalogue);
-Object.keys(products.value).forEach(async (productId) => {
-      const product = products.value[productId];
-      const path = require(`../${product.imgSrc}`);
-      product.img = path.default;
-}
           
 </script>
 
