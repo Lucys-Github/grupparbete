@@ -67,7 +67,7 @@ onBeforeUnmount(() => {
 const logoSrc = computed(() => {
   return isScrolled.value
     ? "/src/assets/small-logo.png" // Slim logo when scrolled
-    : "/src/assets/logo.png"; // Default logo when not scrolled
+    : "https://github.com/Lucys-Github/grupparbete/blob/4ee07ca4823af94f573bc57d3eb47c7168e61027/src/assets/logo.png"; // Default logo when not scrolled
 });
 const logoAltSrc = computed(() => {
   return isScrolled.value
