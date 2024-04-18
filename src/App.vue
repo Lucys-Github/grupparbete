@@ -18,13 +18,11 @@ const fetchProducts = async () => {
       .then((result) => {
         store.getProducts(result);
         const products = ref(store.productsCatalogue);
-        async function loadImages() {
         for (const productId in products.value) {
           const product = products.value[productId];
-          const importedImg = await import(`../${product.imgSrc}`);
-            product.img = importedImg.default;
+          const path = require(`../${product.imgSrc}`);
+          product.img = path.default;
           }}
-        loadImages();
       });
   } catch (error) {
     console.log(error);
