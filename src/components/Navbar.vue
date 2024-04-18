@@ -5,6 +5,7 @@ import CartMenu from "./CartMenu.vue";
 import { useRouter } from "vue-router";
 import SearchMenu from "./SearchMenu.vue";
 import { useCartStore } from "../store";
+import Logo from "/src/assets/alt-logo.png";
 
 const sideMenuActive = ref(false);
 const cartMenuActive = ref(false);
@@ -72,7 +73,7 @@ const logoSrc = computed(() => {
 const logoAltSrc = computed(() => {
   return isScrolled.value
     ? "/src/assets/small-alt-logo.png" // Slim logo hover when scrolled
-    : "/src/assets/alt-logo.png"; // Default logo hover when not scrolled
+    : Logo; // Default logo hover when not scrolled
 });
 
 const bottomContainerClass = computed(() => {
