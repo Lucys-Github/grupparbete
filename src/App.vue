@@ -17,22 +17,22 @@ const fetchProducts = async () => {
       .then((response) => response.json())
       .then((result) => {
         store.getProducts(result);
-        const products = ref(store.productsCatalogue);
-        Object.keys(products.value).forEach(async (productId) => {
-      const product = products.value[productId];
-      const path = require(`../${product.imgSrc}`);
-      product.img = path.default;
     })
-      }
   } catch (error) {
     console.log(error);
   }
 };
 
-
 fetchCart();
 
 fetchProducts();
+
+const products = ref(store.productsCatalogue);
+        Object.keys(products.value).forEach(async (productId) => {
+      const product = products.value[productId];
+      const path = require(`../${product.imgSrc}`);
+      product.img = path.default;
+          
 </script>
 
 <template>
