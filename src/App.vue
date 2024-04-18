@@ -22,9 +22,8 @@ const fetchProducts = async () => {
       const product = products.value[productId];
       const path = require(`../${product.imgSrc}`);
       product.img = path.default;
-    });
-          }}
-      });
+    })
+      }
   } catch (error) {
     console.log(error);
   }
