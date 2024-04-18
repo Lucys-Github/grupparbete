@@ -21,7 +21,7 @@
       <RouterLink :to="`/products/${product.id}`" class="flex-1">
         <!-- The card links to the product page, that in turn pass these props to the productInfo component on call -->
         <img
-          :src="imgSrc"
+          :src="cardImgSrc"
           class="w-full h-32 sm:h-48 lg:h-56 xl:h-[27vh] object-cover"
           :alt="product.alt"
         />
@@ -111,8 +111,6 @@ export default {
       }
       localStorage.setItem("favoritesArray", JSON.stringify(favoritesArray));
       emit("toggle-favorite");
-
-      const imgSrc = require(`/${props.product.cardImgSrc}`);
     };
 
     return { toggleFavorite, isFavorite, checkFavorite };
