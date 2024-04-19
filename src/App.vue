@@ -9,8 +9,6 @@ const cartStore = useCartStore();
 const fetchCart = () => {
   cartStore.getCart();
 };
-
-import img1 from "src/assets/products/jackets/1.jpg";
   
 const fetchProducts = async () => {
   try {
