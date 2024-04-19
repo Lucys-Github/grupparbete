@@ -9,24 +9,23 @@ const cartStore = useCartStore();
 const fetchCart = () => {
   cartStore.getCart();
 };
-
-
+  
 const fetchProducts = async () => {
   try {
     await fetch("../products.json")
       .then((response) => response.json())
       .then((result) => {
         store.getProducts(result);
-      });
+    })
   } catch (error) {
     console.log(error);
   }
 };
 
-
 fetchCart();
 
 fetchProducts();
+          
 </script>
 
 <template>

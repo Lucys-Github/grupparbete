@@ -1,4 +1,4 @@
-<script setup> 
+<script setup>
 import { ref, computed, onMounted, onBeforeUnmount, watch } from "vue";
 import SideMenu from "./SideMenu.vue";
 import CartMenu from "./CartMenu.vue";
@@ -70,7 +70,7 @@ onBeforeUnmount(() => {
 
 const logoSrc = computed(() => {
   return isScrolled.value
-    ? smallLogo // Slim logo when scrolled
+    ? SmallLogo // Slim logo when scrolled
     : Logo; // Default logo when not scrolled
 });
 const logoAltSrc = computed(() => {

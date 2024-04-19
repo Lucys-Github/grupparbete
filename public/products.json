@@ -6,7 +6,7 @@
     "category": "jackets",
     "price": 500,
     "sizes": ["xs", "s", "m", "l", "xl"],
-    "imgSrc": "src/assets/products/jackets/1.jpg",
+    "imgSrc": "/products/jackets/1.jpg",
     "alt": "Tech Jacket",
     "description": "Elevate your style with our sleek and versatile jacket - a perfect blend of comfort and fashion, designed to keep you warm in any season.",
     "bestSeller": false,
